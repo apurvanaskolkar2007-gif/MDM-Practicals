@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Grade Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 25px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Grade Calculator</h1>
+
+    <input type="text" id="name" placeholder="Enter Student Name">
+
+    <input type="number" id="maths" placeholder="Maths Marks" min="0" max="100">
+
+    <input type="number" id="science" placeholder="Science Marks" min="0" max="100">
+
+    <input type="number" id="english" placeholder="English Marks" min="0" max="100">
+
+    <input type="number" id="computer" placeholder="Computer Marks" min="0" max="100">
+
+    <input type="number" id="social" placeholder="Social Science Marks" min="0" max="100">
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <div id="result"></div>
+
+</div>
+
+
+<script>
+
+function calculateResult() {
+
+    let name = document.getElementById("name").value;
+
+    let maths = Number(document.getElementById("maths").value);
+    let science = Number(document.getElementById("science").value);
+    let english = Number(document.getElementById("english").value);
+    let computer = Number(document.getElementById("computer").value);
+    let social = Number(document.getElementById("social").value);
+
+    // Calculate total
+    let total = maths + science + english + computer + social;
+
+    // Calculate percentage
+    let percentage = total / 5;
+
+    // Calculate grade
+    let grade;
+
+    if (percentage >= 90) {
+        grade = "A+";
+    }
+    else if (percentage >= 80) {
+        grade = "A";
+    }
+    else if (percentage >= 70) {
+        grade = "B";
+    }
+    else if (percentage >= 60) {
+        grade = "C";
+    }
+    else if (percentage >= 50) {
+        grade = "D";
+    }
+    else if (percentage >= 40) {
+        grade = "E";
+    }
+    else {
+        grade = "F";
+    }
+
+    // Display result
+    let result = document.getElementById("result");
+
+    result.style.display = "block";
+
+    result.innerHTML = `
+        <h2>Result</h2>
+        <p><b>Student Name:</b> ${name}</p>
+        <p><b>Total Marks:</b> ${total} / 500</p>
+        <p><b>Percentage:</b> ${percentage.toFixed(2)}%</p>
+        <p><b>Grade:</b> ${grade}</p>
+    `;
+}
+
+</script>
+
+</body>
+</html>
